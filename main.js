@@ -17,9 +17,10 @@ const HERO_WALK_FPS = 10;     // базовая скорость анимаци�
 const HERO_WALK_FPS_MAX = 16; // верхняя граница FPS при большом HERO_SPEED
 
 // размер героя относительно экрана
-const HERO_VH = 0.2;       // 20% высоты экрана
+const HERO_VH = 2;     // 20% высоты экрана
 const HERO_MIN_PX = 40;
-const HERO_MAX_PX = 140;
+const HERO_MAX_PX = 100;
+
 
 // ====================== КАНВАС ======================
 const DPR = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
