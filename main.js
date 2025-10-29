@@ -1,7 +1,7 @@
 // ====================== ФЛАГИ / НАСТРОЙКИ ======================
 const ENABLE_WRAP_X = false;              // заворачивать героя по X
 const CAM_SMOOTH = 0.08;                  // плавность камеры (0..1)
-const HERO_SPEED = 280;                   // px/s
+const HERO_SPEED = 50;                   // px/s
 const FIT_HEIGHT_AND_TILE_X = true;       // фон растягивается по высоте окна (НЕ тайлится)
 const WALKABLE_THRESHOLD = 240;           // !!! яркость >= 240 -> проходимо
 const SEEK_RADIUS_PX = 60;                // радиус поиска ближайшей проходимой точки
