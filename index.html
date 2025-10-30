@@ -1,13 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Клик-ту-мув + зацикленная сцена (Canvas)</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <canvas id="game"></canvas>
-  <script type="module" src="./src/main.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Клик-ту-мув + зацикленная сцена (Canvas)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <div id="gameover" class="overlay">
+      <div class="modal">
+        <h2>Game Over</h2>
+        <button onclick="__restartGame()">Почати заново</button>
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
 </html>

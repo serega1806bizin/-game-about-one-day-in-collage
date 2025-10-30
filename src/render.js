@@ -5,6 +5,7 @@ import { clamp } from './utils.js';
 import { worldToScreen } from './camera.js';
 import { isWalkable } from './navmask.js';
 import { nav } from './state.js'; 
+import { renderCars } from './cars.js';
 
 export function render(hero) {
   ctx.clearRect(0, 0, viewW, viewH);
@@ -67,6 +68,7 @@ export function render(hero) {
       ctx.restore();
     }
   }
+renderCars(ctx);
 
   // DEBUG: цель
   if (DEBUG_SHOW_TARGET) {
