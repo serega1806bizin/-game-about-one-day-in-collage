@@ -1,8 +1,10 @@
 export function loadImage(src) {
+  // один «сеансовый» кеш-бастер, чтобы не лупашить сеть каждый раз можно вынести во внешний VERSION
   const img = new Image();
   img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
   return img;
 }
+
 export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 export const wrap  = (v, w)     => ((v % w) + w) % w;
 

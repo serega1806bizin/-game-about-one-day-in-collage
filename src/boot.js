@@ -56,14 +56,16 @@ export async function boot() {
 }
 
 function gameOver() {
-  const el = document.getElementById('gameover');
-  if (el) el.classList.add('show');
+  const el = document.getElementById("gameover");
+  if (el) el.classList.add("show");
 }
 window.__restartGame = function () {
-  const el = document.getElementById('gameover');
-  if (el) el.classList.remove('show');
+  const el = document.getElementById("gameover");
+  if (el) el.classList.remove("show");
   resetCars();
   // повернемо героя на старт
-  hero.x = 1250; hero.y = 470;
-  hero.targetX = hero.x; hero.targetY = hero.y;
-}
+  hero.x = 1250;
+  hero.y = 470;
+  hero.targetX = hero.x;
+  hero.targetY = hero.y;
+};
