@@ -12,6 +12,8 @@ export const images = {
   nav:   loadImage("../navmask.png"),
   choose: loadImage("../choose.png"),
   npc1: loadImage("npc1.png"),
+   scene2: loadImage("scene2.png"),
+   nav3:   loadImage("navmask3.png"),
 };
 
 export async function loadAllAssets() {

@@ -5,9 +5,12 @@ import { clamp } from './utils.js';
 import { projectTargetToWalkable, isColorZone } from './navmask.js';
 import { showPopup } from './dialog.js';
 import { startNpcDialog } from './npcDialog.js'; // <-- додаємо імпорт
+import { changeScene, getCurrentScene } from './sceneManager.js';
 
+const RED_ZONE = { r: 255, g: 0, b: 0 };
 const BLUE_ZONE = { r: 0, g: 0, b: 255 }; // синя зона — магазин
 const GREEN_ZONE = { r: 0, g: 255, b: 85 }; // зелена зона — NPC
+
 
 export function bindPointer(hero) {
   canvas.addEventListener('pointerdown', (e) => {
@@ -30,6 +33,16 @@ export function bindPointer(hero) {
     if (isColorZone(wx, wy, GREEN_ZONE.r, GREEN_ZONE.g, GREEN_ZONE.b)) {
       console.log('🟩 Клік по зеленій зоні — NPC діалог');
       startNpcDialog();
+      return;
+    }
+
+    if (isColorZone(wx, wy, RED_ZONE.r, RED_ZONE.g, RED_ZONE.b)) {
+      const current = getCurrentScene();
+      if (current === 1) {
+        changeScene(2); // з першої → у другу (scene2 + navmask3)
+      } else {
+        changeScene(1); // з другої → назад у першу
+      }
       return;
     }
 
