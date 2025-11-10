@@ -30,3 +30,75 @@ html, body {
 }
 
 
+/* Центровка и оформление модального окна с выбором */
+#popup.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+#popup .modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+#popup img {
+  width: 600px;
+  max-width: 80vw;
+  image-rendering: pixelated;
+  margin-bottom: 40px;
+}
+
+/* Кнопки */
+#popup button {
+  background: #ffffff;
+  color: #000;
+  font-size: 32px;
+  font-family: 'Press Start 2P', monospace;
+  border: 4px solid #000;
+  border-radius: 8px;
+  padding: 16px 36px;
+  margin: 0 20px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+#popup button:hover {
+  background: #ff4040;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Контейнер для кнопок */
+#popup .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+#dialogBox {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid #999;
+  padding: 24px;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  display: none;
+}
+
+#dialogBox.show {
+  display: block;
+}

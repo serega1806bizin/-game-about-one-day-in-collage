@@ -6,15 +6,20 @@ import { worldToScreen } from './camera.js';
 import { isWalkable } from './navmask.js';
 import { nav } from './state.js'; 
 import { renderCars } from './cars.js';
+import { renderNpc } from './npc.js';
 
 export function render(hero) {
   ctx.clearRect(0, 0, viewW, viewH);
+
+
+ 
 
   // фон
   if (images.scene.complete && images.scene.naturalWidth) {
     const tex = images.scene;
     const texW = tex.naturalWidth;
     const texH = tex.naturalHeight;
+ 
 
     if (FIT_HEIGHT_AND_TILE_X) {
       const scaledW = texW * xScale;
@@ -33,7 +38,7 @@ export function render(hero) {
     ctx.fillStyle = '#222';
     ctx.fillRect(0, 0, viewW, viewH);
   }
-
+renderNpc(); // <-- малюємо NPC перед героєм або після машин
   // DEBUG: маска
   if (DEBUG_SHOW_NAV && nav.canvas) {
     const sx = Math.floor(clamp(cam.x, 0, Math.max(0, nav.w - (viewW / xScale))));

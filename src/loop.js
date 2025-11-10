@@ -2,8 +2,10 @@
 import { render } from './render.js';
 import { smoothFollow } from './camera.js';
 import { isPaused } from './gameData.js'; // <-- ИМПОРТ
+import { updateNpc } from './npc.js';
 
 let last = performance.now();
+
 
 export function startLoop(updateFn, hero) {
   function loop(now) {
@@ -20,3 +22,4 @@ export function startLoop(updateFn, hero) {
   }
   requestAnimationFrame(loop);
 }
+

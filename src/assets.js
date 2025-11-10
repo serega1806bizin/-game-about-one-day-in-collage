@@ -11,6 +11,7 @@ export const images = {
   hero:  loadImage("../hero.png"),
   nav:   loadImage("../navmask.png"),
   choose: loadImage("../choose.png"),
+  npc1: loadImage("npc1.png"),
 };
 
 export async function loadAllAssets() {
