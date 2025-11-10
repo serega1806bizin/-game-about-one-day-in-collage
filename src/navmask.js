@@ -1,3 +1,4 @@
+// navmask.js
 import { WALKABLE_MODE, WALKABLE_THRESHOLD, SEEK_RADIUS_PX } from './config.js';
 import { clamp } from './utils.js';
 import { images } from './assets.js';
@@ -21,6 +22,25 @@ export function prepareNavMask() {
   nav.data = nav.ctx.getImageData(0, 0, nav.w, nav.h).data;
 }
 
+// НОВАЯ ФУНКЦИЯ: Проверка, находится ли точка в зоне определенного цвета
+export function isColorZone(wx, wy, rTarget, gTarget, bTarget, tolerance = 10) {
+  if (!nav.data) return false;
+
+  const mx = Math.floor(clamp(wx, 0, nav.w - 1));
+  const my = Math.floor(clamp(wy, 0, nav.h - 1));
+  const idx = (my * nav.w + mx) * 4;
+  
+  const r = nav.data[idx];
+  const g = nav.data[idx + 1];
+  const b = nav.data[idx + 2];
+  // a = nav.data[idx + 3]; // Прозрачность пока не используем для триггеров
+
+  const diffR = Math.abs(r - rTarget);
+  const diffG = Math.abs(g - gTarget);
+  const diffB = Math.abs(b - bTarget);
+
+  return (diffR <= tolerance && diffG <= tolerance && diffB <= tolerance);
+}
 
 export function isWalkable(wx, wy) {
   if (!nav.data) return false;
@@ -37,6 +57,7 @@ export function isWalkable(wx, wy) {
     const score = Math.max(brightness, a);
     return score >= WALKABLE_THRESHOLD;
   } else {
+    // WALKABLE_MODE === 'brightness' (по умолчанию)
     const brightness = (r + g + b) / 3;
     return brightness >= WALKABLE_THRESHOLD;
   }

@@ -10,6 +10,7 @@ export const images = {
   scene: loadImage("../scene1.png"),
   hero:  loadImage("../hero.png"),
   nav:   loadImage("../navmask.png"),
+  choose: loadImage("../choose.png"),
 };
 
 export async function loadAllAssets() {
@@ -17,6 +18,7 @@ export async function loadAllAssets() {
     waitDecode(images.scene),
     waitDecode(images.hero),
     waitDecode(images.nav),
+    waitDecode(images.choose), 
     ...carSprites.map(s => waitDecode(s.img ? s.img : s)),
   ]);
 
