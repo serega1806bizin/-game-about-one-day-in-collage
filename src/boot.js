@@ -16,6 +16,7 @@ import {
   viewH,
 } from "./state.js";
 import { loadFlags } from "./state.js";
+import { getCurrentScene } from "./sceneManager.js";
 
 export async function boot() {
   resizeCanvasTo(window.innerWidth, window.innerHeight);
@@ -43,9 +44,13 @@ export async function boot() {
   window.heroRef = hero;
 
   startLoop((dt) => {
-    updateHero(hero, dt); // рух героя
-    updateCars(dt, () => gameOver()); // машини
-    updateNpc(dt); // <-- оновлення анімації NPC
+    updateHero(hero, dt);
+
+    // тільки на сцені 1
+    if (getCurrentScene() === 1) {
+      updateCars(dt, () => gameOver());
+      updateNpc(dt);
+    }
   }, hero);
 }
 

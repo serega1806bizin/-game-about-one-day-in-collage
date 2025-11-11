@@ -8,13 +8,15 @@ export const carSprites = [
 
 export const images = {
   scene: loadImage("../scene1.png"),
-  hero: loadImage("../hero.png"),
   nav: loadImage("../navmask.png"),
+  scene2: loadImage("../scene2.png"),
+  nav2: loadImage("../navmask2.png"),
+  hero: loadImage("../hero.png"),
   choose: loadImage("../choose.png"),
   npc1: loadImage("../npc1.png"),
-  scene2: loadImage("../scene2.png"),
-  nav3: loadImage("../navmask3.png"),
 };
+
+
 
 export async function loadAllAssets() {
   await Promise.all([
