@@ -21,5 +21,10 @@ export const HERO_VH = 0.20;     // 20% (было 2 — видимо опеча�
 export const HERO_MIN_PX = 40;
 export const HERO_MAX_PX = 100;
 
+// ---- розмір NPC відносно екрана ----
+export const NPC_VH   = 0.18;   // 18% висоти екрана (підбери смак)
+export const NPC_MIN_PX = 36;   // мінімальна висота у px
+export const NPC_MAX_PX = 96;   // максимальна висота у px
+
 // рендер
 export const DPR = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));

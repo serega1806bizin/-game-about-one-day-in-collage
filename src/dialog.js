@@ -7,6 +7,20 @@ const popupEl = document.getElementById('popup');
 const popupImageEl = document.getElementById('popupImage');
 const yesButton = document.getElementById('yesButton');
 const noButton = document.getElementById('noButton');
+// dialog.js
+let onResolve = null;
+
+export function openDialog(lines) {
+  // ...показати UI, завантажити репліки, запустити прогортання
+  return new Promise((resolve) => {
+    onResolve = resolve;
+  });
+}
+
+export function closeDialog() {
+  // ...сховати UI
+  if (onResolve) { onResolve(); onResolve = null; }
+}
 
 /** Показ модалки */
 export function showPopup() {

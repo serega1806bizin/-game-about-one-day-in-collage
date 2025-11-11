@@ -8,6 +8,7 @@ let dialogText;
 let lines = [];
 let currentLine = 0;
 let isActive = false;
+let wasShown = false; // ← новый флаг, чтобы диалог нельзя было повторно открыть
 
 function ensureDom() {
   if (!dialogBox) {
@@ -21,7 +22,9 @@ function ensureDom() {
 
 // --- старт діалогу ---
 export function startNpcDialog() {
-  if (isActive) return;
+  // если диалог уже активен или уже был показан — не запускаем
+  if (isActive || wasShown) return;
+
   ensureDom();
 
   lines = [
@@ -64,6 +67,8 @@ function endDialog() {
   dialogBox.classList.remove('show');
   setPaused(false);
   isActive = false;
+  wasShown = true; // ← після завершення запам’ятовуємо, що вже показували
+
   window.removeEventListener('keydown', handleNext);
   window.removeEventListener('pointerdown', handleNext);
 }

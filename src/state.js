@@ -2,6 +2,25 @@ import { DPR, HERO_SPEED, HERO_SPRITE_COLS, HERO_SPRITE_ROWS } from './config.js
 
 export const canvas = document.getElementById('game');
 export const ctx = canvas.getContext('2d', { alpha: false });
+export const flags = {
+  talkedTo: { npc1: false },
+};
+
+export function loadFlags() {
+  try {
+    const raw = localStorage.getItem("gameFlags");
+    if (raw) {
+      const saved = JSON.parse(raw);
+      if (saved?.talkedTo) flags.talkedTo = { ...flags.talkedTo, ...saved.talkedTo };
+    }
+  } catch {}
+}
+
+export function saveFlags() {
+  try {
+    localStorage.setItem("gameFlags", JSON.stringify({ talkedTo: flags.talkedTo }));
+  } catch {}
+}
 
 export let viewW = 0, viewH = 0;     // CSS px
 export let worldW = 0, worldH = 0;   // мировые px исходника

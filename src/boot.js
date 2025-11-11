@@ -5,8 +5,17 @@ import { initHeroSprite, applyHeroSizeFromScreen, updateHero } from "./hero.js";
 import { recomputeScales, snapCameraToHero } from "./camera.js";
 import { startLoop } from "./loop.js";
 import { updateCars, resetCars } from "./cars.js";
-import { initNpc, updateNpc } from "./npc.js"; // <-- додай сюди
-import { canvas, hero, cam, setWorldSize, resizeCanvasTo, viewW, viewH } from "./state.js";
+import { initNpc, updateNpc, applyNpcSizeFromScreen } from "./npc.js";
+import {
+  canvas,
+  hero,
+  cam,
+  setWorldSize,
+  resizeCanvasTo,
+  viewW,
+  viewH,
+} from "./state.js";
+import { loadFlags } from "./state.js";
 
 export async function boot() {
   resizeCanvasTo(window.innerWidth, window.innerHeight);
@@ -14,7 +23,9 @@ export async function boot() {
     resizeCanvasTo(window.innerWidth, window.innerHeight);
     recomputeScales();
     applyHeroSizeFromScreen(hero);
+    applyNpcSizeFromScreen(); // ← ДОДАТИ ЦЕ
   });
+  loadFlags();
 
   await loadAllAssets();
 
@@ -32,9 +43,9 @@ export async function boot() {
   window.heroRef = hero;
 
   startLoop((dt) => {
-    updateHero(hero, dt);           // рух героя
+    updateHero(hero, dt); // рух героя
     updateCars(dt, () => gameOver()); // машини
-    updateNpc(dt);                  // <-- оновлення анімації NPC
+    updateNpc(dt); // <-- оновлення анімації NPC
   }, hero);
 }
 
