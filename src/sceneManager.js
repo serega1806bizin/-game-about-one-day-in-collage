@@ -3,7 +3,7 @@ import { setWorldSize, hero } from "./state.js";
 import { prepareNavMask } from "./navmask.js";
 import { recomputeScales, snapCameraToHero } from "./camera.js";
 import { resetCars } from "./cars.js";
-import { setHeroScale, applyHeroSizeFromScreen } from "./hero.js"; // <-- НОВЕ
+import { setHeroSpeed, setHeroScale, applyHeroSizeFromScreen } from "./hero.js"; // <-- НОВЕ
 
 let currentScene = 1;
 
@@ -13,7 +13,9 @@ export function changeScene(targetScene) {
   if (targetScene === 2) {
     images.scene = images.scene2;
     images.nav   = images.nav2;
-    setHeroScale(hero, 2);     // <-- тут збільшуємо
+    setHeroScale(hero, 2);
+    setHeroSpeed(hero, 220); 
+         // <-- тут збільшуємо
   } else {
     images.scene = images.scene1;
     images.nav   = images.nav1;

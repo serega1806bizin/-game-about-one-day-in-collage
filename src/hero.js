@@ -39,6 +39,10 @@ export function setHeroScale(hero, k) {
   applyHeroSizeFromScreen(hero); 
 }
 
+export function setHeroSpeed(hero, pxPerSec) {
+  hero.speed = pxPerSec;
+}
+
 export function updateHero(hero, dt) {
   const dx = hero.targetX - hero.x;
   const dy = hero.targetY - hero.y;
