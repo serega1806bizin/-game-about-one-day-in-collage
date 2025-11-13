@@ -15,15 +15,31 @@
         <button onclick="__restartGame()">Почати заново</button>
       </div>
     </div>
-      <div id="popup" class="overlay">
-        <div class="modal">
-          <img id="popupImage" src="" alt="Выбор" />
-          <div class="buttons">
-            <button id="yesButton">Так</button>
-            <button id="noButton">Ні</button>
-          </div>
+    <div id="popup" class="overlay">
+      <div class="modal">
+        <img id="popupImage" src="" alt="Выбор" />
+        <div class="buttons">
+          <button id="yesButton">Так</button>
+          <button id="noButton">Ні</button>
         </div>
       </div>
+    </div>
+    <div id="questionPopup" class="overlay">
+      <div class="modal">
+        <p>Яким чином дізнатися, де пара?</p>
+        <div class="buttons">
+          <button class="questionButton" data-answer="curator">
+            У куратора
+          </button>
+          <button class="questionButton" data-answer="mate">
+            У одногрупника
+          </button>
+          <button class="questionButton" data-answer="schedule">
+            Подивитися у розклад
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="./src/main.js"></script>
   </body>

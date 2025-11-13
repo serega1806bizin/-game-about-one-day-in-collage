@@ -8,6 +8,10 @@ const popupImageEl = document.getElementById('popupImage');
 const yesButton = document.getElementById('yesButton');
 const noButton = document.getElementById('noButton');
 // dialog.js
+const questionPopupEl = document.getElementById('questionPopup');
+const questionButtons = questionPopupEl
+  ? questionPopupEl.querySelectorAll('.questionButton')
+  : null;
 let onResolve = null;
 
 export function openDialog(lines) {
@@ -38,6 +42,22 @@ function hidePopup() {
   hero.targetY = hero.y;
 }
 
+// ===== Модалка вопроса "де пара?" для сцены 2 =====
+
+export function showQuestionPopup() {
+  if (!questionPopupEl || questionPopupEl.classList.contains('show')) return;
+  setPaused(true);
+  questionPopupEl.classList.add('show');
+}
+
+function hideQuestionPopup() {
+  if (!questionPopupEl) return;
+  questionPopupEl.classList.remove('show');
+  setPaused(false);
+  hero.targetX = hero.x;
+  hero.targetY = hero.y;
+}
+
 /** Обработка Да */
 function handleYes() {
   gameData.boughtWater = true;
@@ -60,4 +80,13 @@ function handleNo() {
 export function bindDialogButtons() {
   yesButton.addEventListener('click', handleYes);
   noButton.addEventListener('click', handleNo);
+
+  if (questionButtons) {
+    questionButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // тут потом сможешь различать ответы по data-answer
+        hideQuestionPopup();
+      });
+    });
+  }
 }
