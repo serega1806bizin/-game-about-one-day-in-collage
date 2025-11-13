@@ -6,6 +6,10 @@ import { recomputeScales, snapCameraToHero } from "./camera.js";
 import { startLoop } from "./loop.js";
 import { updateCars, resetCars } from "./cars.js";
 import { initNpc, updateNpc, applyNpcSizeFromScreen } from "./npc.js";
+import { initNpc2 } from "./npc.js";
+import { initNpc3 } from "./npc.js";
+
+
 import {
   canvas,
   hero,
@@ -18,6 +22,9 @@ import {
 } from "./state.js";
 import { loadFlags } from "./state.js";
 import { getCurrentScene, changeScene } from "./sceneManager.js"; // ← ДОБАВИЛИ changeScene
+
+
+
 
 export async function boot() {
   resizeCanvasTo(window.innerWidth, window.innerHeight);
@@ -41,6 +48,8 @@ export async function boot() {
 
   // ініціалізація NPC після завантаження
   initNpc();
+  initNpc2();
+  initNpc3();
 
   window.heroRef = hero;
 

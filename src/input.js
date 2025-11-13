@@ -40,6 +40,7 @@ export function bindPointer(hero) {
     }
 
     // --- 2. Клік по зеленій зоні
+    // --- 2. Клік по зеленій зоні
     if (isColorZone(wx, wy, GREEN_ZONE.r, GREEN_ZONE.g, GREEN_ZONE.b)) {
       const current = getCurrentScene();
 
@@ -49,6 +50,9 @@ export function bindPointer(hero) {
       } else if (current === 2) {
         console.log("🟩 Сцена 2: перехід на сцену 3");
         changeScene(3);
+      } else if (current === 3) {
+        console.log("🟩 Сцена 3: перехід на сцену 6");
+        changeScene(6);
       }
 
       return;

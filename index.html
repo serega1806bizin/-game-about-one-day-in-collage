@@ -40,6 +40,28 @@
         </div>
       </div>
     </div>
+    <div id="schedulePopup" class="overlay">
+      <div class="modal" style="text-align:center;">
+        <img id="scheduleImage" src="rozklad.png" style="max-width:90vw;max-height:80vh;" />
+        <div class="buttons" style="margin-top:20px;">
+          <button id="closeScheduleBtn">Закрити</button>
+        </div>
+      </div>
+    </div>
+    <div id="lessonPopup" class="lesson-overlay">
+      <div class="lesson-modal">
+        <p id="lessonText"></p>
+
+        <!-- поле вводу -->
+        <input id="lessonInput" class="lesson-input hidden" type="text" />
+
+        <!-- кнопки -->
+        <div class="lesson-buttons" id="lessonButtons"></div>
+      </div>
+    </div>
+
+
+
 
     <script type="module" src="./src/main.js"></script>
   </body>

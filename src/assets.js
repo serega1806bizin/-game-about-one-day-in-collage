@@ -27,6 +27,13 @@ export const images = {
   hero:   loadImage("../hero.png"),
   choose: loadImage("../choose.png"),
   npc1:   loadImage("../npc1.png"),
+  npc2: loadImage("../npc2.png"),
+  npc3: loadImage("../npc3.png"),
+  scene6: loadImage("../scene6.png"),
+  nav6:   loadImage("../navmask6.png"),
+
+
+
 };
 
 // «текущая» карта, з которой працюють камера / рендер / навмаска
@@ -48,6 +55,11 @@ export async function loadAllAssets() {
     waitDecode(images.hero),
     waitDecode(images.choose),
     waitDecode(images.npc1),
+    waitDecode(images.npc3),
+    waitDecode(images.scene6),
+    waitDecode(images.nav6),
+
+
     ...carSprites.map((s) => waitDecode(s.img ? s.img : s)),
   ]);
 

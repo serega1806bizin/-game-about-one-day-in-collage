@@ -5,6 +5,8 @@ import { recomputeScales, snapCameraToHero } from "./camera.js";
 import { resetCars } from "./cars.js";
 import { setHeroSpeed, setHeroScale, applyHeroSizeFromScreen } from "./hero.js";
 import { HERO_SPEED } from "./config.js";
+import { startLessonScene } from "./lessonStory.js";
+
 
 let currentScene = 1;
 
@@ -77,6 +79,20 @@ function applySceneAssets(targetScene) {
       hero.x = 450;
       hero.y = 650;
       break;
+
+    case 6:
+      images.scene = images.scene6;
+      images.nav   = images.nav6;
+
+      setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
+
+      // Координаты героя при входе на сцену 6
+      hero.x = 500;   // або інші, ти вибереш
+      hero.y = 450;
+      setTimeout(() => startLessonScene(), 500);
+
+      break;
+
 
     default:
       console.warn("Unknown scene:", targetScene);
