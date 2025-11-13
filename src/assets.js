@@ -21,6 +21,9 @@ export const images = {
   scene4: loadImage("../scene4.png"),
   nav4:   loadImage("../navmask4.png"),
 
+  scene5: loadImage("../scene5.png"),
+  nav5:   loadImage("../navmask5.png"),
+
   hero:   loadImage("../hero.png"),
   choose: loadImage("../choose.png"),
   npc1:   loadImage("../npc1.png"),
@@ -40,6 +43,8 @@ export async function loadAllAssets() {
     waitDecode(images.nav3),
     waitDecode(images.scene4),
     waitDecode(images.nav4),
+    waitDecode(images.scene5),
+    waitDecode(images.nav5),
     waitDecode(images.hero),
     waitDecode(images.choose),
     waitDecode(images.npc1),

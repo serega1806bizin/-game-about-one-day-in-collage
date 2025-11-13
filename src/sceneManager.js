@@ -64,6 +64,19 @@ function applySceneAssets(targetScene) {
       hero.x = 100;
       hero.y = 420;
       break;
+    
+    case 5:
+      console.log("→ Сцена 5");
+      images.scene = images.scene5;
+      images.nav = images.nav5;
+
+      setHeroScale(hero, 1.5);
+      console.log(" scale = 1.5");
+
+      setHeroSpeed(hero, 220);
+      hero.x = 450;
+      hero.y = 650;
+      break;
 
     default:
       console.warn("Unknown scene:", targetScene);

@@ -11,6 +11,7 @@ const RED_ZONE = { r: 255, g: 0, b: 0 };
 const BLUE_ZONE = { r: 0, g: 0, b: 255 }; // синя зона — магазин
 const GREEN_ZONE = { r: 85, g: 255, b: 0 }; // зелена зона — NPC
 const GREEN_ZONE2 = { r: 0, g: 255, b: 85 }; // зелена зона — NPC
+const YELLOW_ZONE = { r: 255, g: 255, b: 0 }; // жовта зона — NPC
 
 export function bindPointer(hero) {
   canvas.addEventListener("pointerdown", (e) => {
@@ -71,6 +72,10 @@ export function bindPointer(hero) {
       }
 
       return;
+    }
+
+    if (isColorZone(wx, wy, YELLOW_ZONE.r, YELLOW_ZONE.g, YELLOW_ZONE.b)) {
+      changeScene(5);
     }
 
     // --- 3. Звичайне пересування
