@@ -21,22 +21,43 @@ export function initHeroSprite(hero) {
 }
 
 export function applyHeroSizeFromScreen(hero) {
-  const frameW = (images.hero.naturalWidth || 1) / HERO_SPRITE_COLS;
-  const frameH = (images.hero.naturalHeight || 1) / HERO_SPRITE_ROWS;
-  const aspect = frameW / frameH;
+  console.log("📏 applyHeroSizeFromScreen()");
+  console.log(" hero.scale =", hero.scale);
 
   let targetH = Math.round(viewH * HERO_VH);
+
+  if (viewH < 500) {
+    targetH = Math.round(viewH * HERO_VH)+50;
+  }
+
+  console.log(" base height from screen =", targetH);
+
+  // застосовуємо масштаб
+  targetH = targetH * (hero.scale || 1);
+  console.log(" after scale =", targetH);
+
   targetH = clamp(targetH, HERO_MIN_PX, HERO_MAX_PX);
+  console.log(
+    " after clamp =",
+    targetH,
+    "(min =",
+    HERO_MIN_PX,
+    ", max =",
+    HERO_MAX_PX,
+    ")"
+  );
+
+  const aspect = hero.srcW > 0 ? hero.srcW / hero.srcH : 1;
 
   hero.h = targetH;
   hero.w = Math.round(targetH * aspect);
-  hero.w = Math.round(hero.w * (hero.scale || 1));
-  hero.h = Math.round(hero.h * (hero.scale || 1));
+
+  console.log(` → RESULT hero.w=${hero.w}, hero.h=${hero.h}`);
 }
 
 export function setHeroScale(hero, k) {
   hero.scale = k;
-  applyHeroSizeFromScreen(hero); 
+  applyHeroSizeFromScreen(hero);
 }
 
 export function setHeroSpeed(hero, pxPerSec) {

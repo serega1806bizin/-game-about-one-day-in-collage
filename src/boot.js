@@ -14,9 +14,10 @@ import {
   resizeCanvasTo,
   viewW,
   viewH,
+  worldW,
 } from "./state.js";
 import { loadFlags } from "./state.js";
-import { getCurrentScene } from "./sceneManager.js";
+import { getCurrentScene, changeScene } from "./sceneManager.js"; // ← ДОБАВИЛИ changeScene
 
 export async function boot() {
   resizeCanvasTo(window.innerWidth, window.innerHeight);
@@ -46,10 +47,42 @@ export async function boot() {
   startLoop((dt) => {
     updateHero(hero, dt);
 
-    // тільки на сцені 1
-    if (getCurrentScene() === 1) {
+    const scene = getCurrentScene();
+
+    // --- обновления, специфические для сцены 1 (как и было)
+    if (scene === 1) {
       updateCars(dt, () => gameOver());
       updateNpc(dt);
+    }
+
+    // --- ЛОГИКА ПЕРЕХОДОВ ПО КРАЯМ ---
+
+    const EDGE_MARGIN = 30; // отступ от края, можно подстроить
+
+    // СЦЕНА 3: правый край → сцена 2
+    if (scene === 3) {
+      const heroRight = hero.x + hero.w * (1 - hero.anchorX);
+      if (heroRight >= worldW - EDGE_MARGIN) {
+        console.log("➡️ Сцена 3: правый край, переходим на сцену 2");
+        changeScene(2);
+        hero.x = 1400;
+        hero.y = 420;
+        snapCameraToHero(hero);
+        return; // чтобы в этом кадре больше ничего не делать
+      }
+    }
+
+    // СЦЕНА 4: левый край → сцена 2
+    if (scene === 4) {
+      const heroLeft = hero.x - hero.w * hero.anchorX;
+      if (heroLeft <= EDGE_MARGIN) {
+        console.log("⬅️ Сцена 4: левый край, переходим на сцену 2");
+        changeScene(2);
+        hero.x = 1400;
+        hero.y = 420;
+        snapCameraToHero(hero);
+        return;
+      }
     }
   }, hero);
 }

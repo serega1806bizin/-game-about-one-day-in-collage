@@ -59,7 +59,7 @@ export const hero = {
   srcW: 0,
   srcH: 0,
   row: 0,
-  scale: 1,
+  scale: 0.7,
 };
 
 // оффскрин навмаски

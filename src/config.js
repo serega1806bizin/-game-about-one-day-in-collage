@@ -17,9 +17,9 @@ export const HERO_WALK_FPS = 10;
 export const HERO_WALK_FPS_MAX = 16;
 
 // размер героя относительно экрана
-export const HERO_VH = 0.20;     // 20% (было 2 — видимо опечатка), 0..1
-export const HERO_MIN_PX = 40;
-export const HERO_MAX_PX = 100;
+export const HERO_VH = 0.18;     // 20% (было 2 — видимо опечатка), 0..1
+export const HERO_MIN_PX = 0;
+export const HERO_MAX_PX = 500;
 
 // ---- розмір NPC відносно екрана ----
 export const NPC_VH   = 0.18;   // 18% висоти екрана (підбери смак)
