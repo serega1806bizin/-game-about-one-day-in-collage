@@ -6,12 +6,14 @@ import { projectTargetToWalkable, isColorZone } from "./navmask.js";
 import { showPopup, showQuestionPopup } from "./dialog.js";
 import { startNpcDialog } from "./npcDialog.js"; // <-- додаємо імпорт
 import { changeScene, getCurrentScene } from "./sceneManager.js";
+import { snapCameraToHero } from "./camera.js";
 
 const RED_ZONE = { r: 255, g: 0, b: 0 };
-const BLUE_ZONE = { r: 0, g: 0, b: 255 }; // синя зона — магазин
-const GREEN_ZONE = { r: 85, g: 255, b: 0 }; // зелена зона — NPC
-const GREEN_ZONE2 = { r: 0, g: 255, b: 85 }; // зелена зона — NPC
-const YELLOW_ZONE = { r: 255, g: 255, b: 0 }; // жовта зона — NPC
+const BLUE_ZONE = { r: 0, g: 0, b: 255 };
+const GREEN_ZONE = { r: 85, g: 255, b: 0 };
+const GREEN_ZONE2 = { r: 0, g: 255, b: 85 };
+const YELLOW_ZONE = { r: 255, g: 255, b: 0 };
+const ORANGE_ZONE = { r: 255, g: 170, b: 0 };
 
 export function bindPointer(hero) {
   canvas.addEventListener("pointerdown", (e) => {
@@ -23,24 +25,23 @@ export function bindPointer(hero) {
     const padY = hero.h * hero.anchorY;
     wy = clamp(wy, padY, worldH - (hero.h - padY));
 
-    // --- 1. Клік по синій зоні (магазин)
-    // --- 1. Клік по синій зоні
     if (isColorZone(wx, wy, BLUE_ZONE.r, BLUE_ZONE.g, BLUE_ZONE.b)) {
       const current = getCurrentScene();
 
       if (current === 1) {
         console.log("🟦 Сцена 1: магазин (вода)");
-        showPopup(); // стара логіка
+        showPopup();
       } else if (current === 2) {
         console.log('🟦 Сцена 2: питання "де пара?"');
-        showQuestionPopup(); // НОВА модалка
+        showQuestionPopup();
+      } else if (current === 7) {
+        changeScene(8);
+        return;
       }
 
       return;
     }
 
-    // --- 2. Клік по зеленій зоні
-    // --- 2. Клік по зеленій зоні
     if (isColorZone(wx, wy, GREEN_ZONE.r, GREEN_ZONE.g, GREEN_ZONE.b)) {
       const current = getCurrentScene();
 
@@ -70,6 +71,12 @@ export function bindPointer(hero) {
       if (current === 1) {
         console.log("🟥 Сцена 1: перехід на сцену 2");
         changeScene(2);
+        hero.x = 200;
+        hero.y = 520;
+        hero.targetX = hero.x;
+        hero.targetY = hero.y;
+        snapCameraToHero(hero);
+        return;
       } else if (current === 2) {
         console.log("🟥 Сцена 2: перехід на сцену 4");
         changeScene(4);
@@ -79,7 +86,27 @@ export function bindPointer(hero) {
     }
 
     if (isColorZone(wx, wy, YELLOW_ZONE.r, YELLOW_ZONE.g, YELLOW_ZONE.b)) {
+      const current = getCurrentScene();
+      if (current === 2) {
+        changeScene(7);
+        return;
+      }
+
       changeScene(5);
+      return;
+    }
+
+    if (isColorZone(wx, wy, ORANGE_ZONE.r, ORANGE_ZONE.g, ORANGE_ZONE.b)) {
+      const current = getCurrentScene();
+
+      if (current === 7) {
+        changeScene(2);
+        hero.x = 1250;
+        hero.y = 470;
+        hero.targetX = hero.x;
+        hero.targetY = hero.y;
+        return;
+      }
     }
 
     // --- 3. Звичайне пересування

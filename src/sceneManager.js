@@ -7,7 +7,6 @@ import { setHeroSpeed, setHeroScale, applyHeroSizeFromScreen } from "./hero.js";
 import { HERO_SPEED } from "./config.js";
 import { startLessonScene } from "./lessonStory.js";
 
-
 let currentScene = 1;
 
 function applySceneAssets(targetScene) {
@@ -35,8 +34,6 @@ function applySceneAssets(targetScene) {
 
       setHeroSpeed(hero, 220);
 
-      hero.x = 200;
-      hero.y = 520;
       break;
 
     case 3:
@@ -66,7 +63,7 @@ function applySceneAssets(targetScene) {
       hero.x = 100;
       hero.y = 420;
       break;
-    
+
     case 5:
       console.log("→ Сцена 5");
       images.scene = images.scene5;
@@ -82,17 +79,40 @@ function applySceneAssets(targetScene) {
 
     case 6:
       images.scene = images.scene6;
-      images.nav   = images.nav6;
+      images.nav = images.nav6;
 
       setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
 
       // Координаты героя при входе на сцену 6
-      hero.x = 500;   // або інші, ти вибереш
+      hero.x = 500; // або інші, ти вибереш
       hero.y = 450;
       setTimeout(() => startLessonScene(), 500);
 
       break;
+    
+    case 7:
+      images.scene = images.scene7;
+      images.nav = images.nav7;
 
+      setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
+
+      // Координаты героя при входе на сцену 6
+      hero.x = 2000; // або інші, ти вибереш
+      hero.y = 450;
+
+      break;
+    
+    case 8:
+      images.scene = images.scene8;
+      images.nav = images.nav8;
+
+      setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
+
+      // Координаты героя при входе на сцену 6
+      hero.x = 100; // або інші, ти вибереш
+      hero.y = 450;
+
+      break;
 
     default:
       console.warn("Unknown scene:", targetScene);

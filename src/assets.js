@@ -31,6 +31,10 @@ export const images = {
   npc3: loadImage("../npc3.png"),
   scene6: loadImage("../scene6.png"),
   nav6:   loadImage("../navmask6.png"),
+  nav7:   loadImage("../navmask7.png"),
+  scene7: loadImage("../scene7.png"),
+  scene8: loadImage("../scene8.png"),
+  nav8:   loadImage("../navmask8.png"),
 
 
 
@@ -58,6 +62,10 @@ export async function loadAllAssets() {
     waitDecode(images.npc3),
     waitDecode(images.scene6),
     waitDecode(images.nav6),
+    waitDecode(images.nav7),
+    waitDecode(images.scene7),
+    waitDecode(images.scene8),
+    waitDecode(images.nav8),
 
 
     ...carSprites.map((s) => waitDecode(s.img ? s.img : s)),
