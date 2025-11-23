@@ -60,8 +60,20 @@ export function bindPointer(hero) {
     }
 
     if (isColorZone(wx, wy, GREEN_ZONE2.r, GREEN_ZONE2.g, GREEN_ZONE2.b)) {
-      console.log("🟩 Сцена 1: NPC діалог");
-      startNpcDialog();
+    
+      const current = getCurrentScene();
+
+      if (current === 1) {
+        console.log("🟩 Сцена 1: NPC діалог");
+        startNpcDialog();
+        return;
+      }
+
+      if (current === 8) {
+        changeScene(9);
+        return;
+      }
+
     }
 
     // --- 3. Клік по червоній зоні
@@ -80,6 +92,12 @@ export function bindPointer(hero) {
       } else if (current === 2) {
         console.log("🟥 Сцена 2: перехід на сцену 4");
         changeScene(4);
+      } else if (current === 7) {
+        changeScene(9);
+        return;
+      } else if (current === 9) {
+        changeScene(7);
+        return;
       }
 
       return;
@@ -88,6 +106,11 @@ export function bindPointer(hero) {
     if (isColorZone(wx, wy, YELLOW_ZONE.r, YELLOW_ZONE.g, YELLOW_ZONE.b)) {
       const current = getCurrentScene();
       if (current === 2) {
+        changeScene(7);
+        return;
+      }
+
+      if (current === 8) {
         changeScene(7);
         return;
       }

@@ -113,6 +113,18 @@ function applySceneAssets(targetScene) {
       hero.y = 450;
 
       break;
+    
+    case 9:
+      images.scene = images.scene9;
+      images.nav = images.nav9;
+
+      setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
+
+      // Координаты героя при входе на сцену 6
+      hero.x = 2000; // або інші, ти вибереш
+      hero.y = 450;
+
+      break;
 
     default:
       console.warn("Unknown scene:", targetScene);
