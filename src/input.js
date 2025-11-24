@@ -14,6 +14,7 @@ const BLUE_ZONE = { r: 0, g: 0, b: 255 };
 const BLUE_ZONE2 = { r: 42, g: 0, b: 255 };
 const GREEN_ZONE = { r: 85, g: 255, b: 0 };
 const GREEN_ZONE2 = { r: 0, g: 255, b: 85 };
+const GREEN_ZONE3 = { r: 0, g: 255, b: 0 };
 const YELLOW_ZONE = { r: 255, g: 255, b: 0 };
 const ORANGE_ZONE = { r: 255, g: 170, b: 0 };
 
@@ -74,7 +75,25 @@ export function bindPointer(hero) {
         } else {
           showLessonEnd();
         }
-      } 
+      }
+
+      return;
+    }
+
+    if (isColorZone(wx, wy, GREEN_ZONE3.r, GREEN_ZONE3.g, GREEN_ZONE3.b)) {
+      const current = getCurrentScene();
+
+      if (current === 7) {
+        console.log("🟩 Сцена 7: перехід на сцену 10");
+        changeScene(10);
+        hero.x = 100;
+        hero.y = 900;
+        hero.targetX = hero.x;
+        hero.targetY = hero.y;
+        snapCameraToHero(hero);
+        return;
+      }
+
 
       return;
     }

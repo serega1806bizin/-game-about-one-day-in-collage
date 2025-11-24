@@ -6,6 +6,7 @@ import { resetCars } from "./cars.js";
 import { setHeroSpeed, setHeroScale, applyHeroSizeFromScreen } from "./hero.js";
 import { HERO_SPEED } from "./config.js";
 import { startLessonScene } from "./lesson1Story.js";
+import { startLesson2Scene } from "./lesson2Story.js";
 
 let currentScene = 1;
 
@@ -89,7 +90,7 @@ function applySceneAssets(targetScene) {
       setTimeout(() => startLessonScene(), 500);
 
       break;
-    
+
     case 7:
       images.scene = images.scene7;
       images.nav = images.nav7;
@@ -101,7 +102,7 @@ function applySceneAssets(targetScene) {
       hero.y = 450;
 
       break;
-    
+
     case 8:
       images.scene = images.scene8;
       images.nav = images.nav8;
@@ -113,7 +114,7 @@ function applySceneAssets(targetScene) {
       hero.y = 450;
 
       break;
-    
+
     case 9:
       images.scene = images.scene9;
       images.nav = images.nav9;
@@ -124,6 +125,13 @@ function applySceneAssets(targetScene) {
       hero.x = 2000; // або інші, ти вибереш
       hero.y = 450;
 
+      break;
+
+    case 10:
+      images.scene = images.scene10;
+
+      setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
+      // setTimeout(() => startLesson2Scene(), 500);
       break;
 
     default:
