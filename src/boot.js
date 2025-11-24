@@ -110,3 +110,13 @@ window.__restartGame = function () {
   hero.targetX = hero.x;
   hero.targetY = hero.y;
 };
+
+window.hideDoorIsClosed = function () {
+  const el1 = document.getElementById("closed");
+  const el2 = document.getElementById("end");
+  const el3 = document.getElementById("ocupied");
+  if (el1) el1.classList.remove("show");
+  if (el2) el2.classList.remove("show");
+  if (el3) el3.classList.remove("show");
+
+};

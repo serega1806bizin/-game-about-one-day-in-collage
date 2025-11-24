@@ -36,7 +36,6 @@ export function startNpcDialog() {
   currentLine = 0;
   isActive = true;
 
-  setPaused(true);
   hero.targetX = hero.x;
   hero.targetY = hero.y;
 

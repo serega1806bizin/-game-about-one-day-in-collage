@@ -20,12 +20,13 @@ const hardTask = {
 // Індекси прогресу
 let currentIndex = 0;
 let superTaskDone = false;
-
+export let isLesson1Done = false;
 // =========================================================================
 //                           С Т А Р Т   С Ц Е Н И
 // =========================================================================
 
 export function startLessonScene() {
+  if (isLesson1Done) return;
   currentIndex = 0;
   superTaskDone = false;
 
@@ -243,4 +244,5 @@ function exitClassroom() {
     hero.y = 485;
 
   }, 250);
+  isLesson1Done = true;
 }

@@ -3,13 +3,15 @@ import { canvas, worldH } from "./state.js";
 import { screenToWorld } from "./camera.js";
 import { clamp } from "./utils.js";
 import { projectTargetToWalkable, isColorZone } from "./navmask.js";
-import { showPopup, showQuestionPopup } from "./dialog.js";
+import { showPopup, showQuestionPopup, showDoorIsClosed, showLessonEnd, showOcupied } from "./dialog.js";
 import { startNpcDialog } from "./npcDialog.js"; // <-- додаємо імпорт
 import { changeScene, getCurrentScene } from "./sceneManager.js";
 import { snapCameraToHero } from "./camera.js";
+import { isLesson1Done } from "./lesson1Story.js";
 
 const RED_ZONE = { r: 255, g: 0, b: 0 };
 const BLUE_ZONE = { r: 0, g: 0, b: 255 };
+const BLUE_ZONE2 = { r: 42, g: 0, b: 255 };
 const GREEN_ZONE = { r: 85, g: 255, b: 0 };
 const GREEN_ZONE2 = { r: 0, g: 255, b: 85 };
 const YELLOW_ZONE = { r: 255, g: 255, b: 0 };
@@ -37,6 +39,21 @@ export function bindPointer(hero) {
       } else if (current === 7) {
         changeScene(8);
         return;
+      } else if (current === 4) {
+        showDoorIsClosed();
+        return;
+      }
+
+      return;
+    }
+
+    if (isColorZone(wx, wy, BLUE_ZONE2.r, BLUE_ZONE2.g, BLUE_ZONE2.b)) {
+      const current = getCurrentScene();
+
+      if (current === 3) {
+        showDoorIsClosed();
+        console.log("🟦 Сцена 3: закрито");
+        return;
       }
 
       return;
@@ -52,9 +69,12 @@ export function bindPointer(hero) {
         console.log("🟩 Сцена 2: перехід на сцену 3");
         changeScene(3);
       } else if (current === 3) {
-        console.log("🟩 Сцена 3: перехід на сцену 6");
-        changeScene(6);
-      }
+        if (!isLesson1Done) {
+          changeScene(6);
+        } else {
+          showLessonEnd();
+        }
+      } 
 
       return;
     }
@@ -98,8 +118,9 @@ export function bindPointer(hero) {
       } else if (current === 9) {
         changeScene(7);
         return;
+      } else if (current === 3) {
+        showOcupied();
       }
-
       return;
     }
 
@@ -112,6 +133,11 @@ export function bindPointer(hero) {
 
       if (current === 8) {
         changeScene(7);
+        return;
+      }
+
+      if (current === 7) {
+        showDoorIsClosed();
         return;
       }
 

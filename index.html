@@ -15,6 +15,26 @@
         <button onclick="__restartGame()">Почати заново</button>
       </div>
     </div>
+    <div id="closed" class="overlay">
+      <div class="modal">
+        <h2>Кабінет закритий</h2>
+        <button onclick="hideDoorIsClosed()" id="close">
+          поступи в коледж та досліди кабінет)
+        </button>
+      </div>
+    </div>
+    <div id="ocupied" class="overlay">
+      <div class="modal">
+        <h2>Зайнято)</h2>
+        <button onclick="hideDoorIsClosed()" id="close">закрити</button>
+      </div>
+    </div>
+    <div id="end" class="overlay">
+      <div class="modal">
+        <h2>Тут пара вже завершилась.</h2>
+        <button onclick="hideDoorIsClosed()"  id="close">закрити</button>
+      </div>
+    </div>
     <div id="popup" class="overlay">
       <div class="modal">
         <img id="popupImage" src="" alt="Выбор" />
@@ -41,9 +61,13 @@
       </div>
     </div>
     <div id="schedulePopup" class="overlay">
-      <div class="modal" style="text-align:center;">
-        <img id="scheduleImage" src="rozklad.png" style="max-width:90vw;max-height:80vh;" />
-        <div class="buttons" style="margin-top:20px;">
+      <div class="modal" style="text-align: center">
+        <img
+          id="scheduleImage"
+          src="rozklad.png"
+          style="max-width: 90vw; max-height: 80vh"
+        />
+        <div class="buttons" style="margin-top: 20px">
           <button id="closeScheduleBtn">Закрити</button>
         </div>
       </div>
@@ -59,9 +83,6 @@
         <div class="lesson-buttons" id="lessonButtons"></div>
       </div>
     </div>
-
-
-
 
     <script type="module" src="./src/main.js"></script>
   </body>

@@ -45,9 +45,28 @@ export function closeDialog() {
 // ----------------------------------------------------
 export function showPopup() {
   if (popupEl.classList.contains("show")) return;
-  setPaused(true);
   popupImageEl.src = images.choose.src;
   popupEl.classList.add("show");
+}
+
+const messageBox = document.getElementById("closed");
+const endBox = document.getElementById("end");
+const ocupiedBox = document.getElementById("ocupied");
+
+
+export function showDoorIsClosed() {
+  if (messageBox.classList.contains("show")) return;
+  messageBox.classList.add("show");
+}
+
+export function showLessonEnd() {
+  if (endBox.classList.contains("show")) return;
+  endBox.classList.add("show");
+}
+
+export function showOcupied() {
+  if (ocupiedBox.classList.contains("show")) return;
+  ocupiedBox.classList.add("show");
 }
 
 function hidePopup() {

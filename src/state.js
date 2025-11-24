@@ -8,7 +8,7 @@ import {
 export const canvas = document.getElementById("game");
 export const ctx = canvas.getContext("2d", { alpha: false });
 export const flags = {
-  talkedTo: { npc1: false },
+  talkedTo: { npc1: false }
 };
 
 export function loadFlags() {

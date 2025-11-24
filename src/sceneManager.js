@@ -5,7 +5,7 @@ import { recomputeScales, snapCameraToHero } from "./camera.js";
 import { resetCars } from "./cars.js";
 import { setHeroSpeed, setHeroScale, applyHeroSizeFromScreen } from "./hero.js";
 import { HERO_SPEED } from "./config.js";
-import { startLessonScene } from "./lessonStory.js";
+import { startLessonScene } from "./lesson1Story.js";
 
 let currentScene = 1;
 
