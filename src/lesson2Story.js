@@ -2,7 +2,7 @@
 import { showLesson } from "./lessonDialog.js";
 import { changeScene } from "./sceneManager.js";
 import { hero } from "./state.js";
-
+import { triggerLightning } from "./lightningEffect.js";
 //
 //  ─── ФЛАГ УРОКУ 2 ─────────────────────────────────────────
 //
@@ -12,7 +12,10 @@ export let isLesson2Done = false;
 //  ─── СТАРТ СЦЕНИ ─────────────────────────────────────────
 //
 export function startLesson2Scene() {
-  if (isLesson2Done) return;
+  if (isLesson2Done) {
+    exitClassroom();
+    return;
+  };
 
   showLesson(
     "Кабінет фізики. На столі — куля з фіолетовими блискавками. Усі дивляться на неї, ніби вона зараз вибухне.",
@@ -36,7 +39,7 @@ function beginIntro(type = "normal") {
   }
 
   showLesson(
-    remark + "\n\nПара починається. Засадько вмикає кулю — вона загоряється яскравим світлом.",
+    remark + "\n\nПара починається. Викладач вмикає кулю — вона загоряється яскравим світлом.",
     [
       { label: "Чекаю, що він скаже", onSelect: () => teacherIntro() },
     ]
@@ -48,7 +51,7 @@ function beginIntro(type = "normal") {
 //
 function teacherIntro() {
   showLesson(
-    "Засадько:\n«Отже, плазмова куля. Можна торкнутись — не вдарить.»",
+    "Викладач:\n«Отже, плазмова куля. Можна торкнутись — не вдарить.»",
     [
       { label: "Посміхнутись", onSelect: () => studentComment() },
       { label: "Пильніше подивитись", onSelect: () => studentComment("observe") },
@@ -78,7 +81,7 @@ function studentComment(mode = "normal") {
 //
 function teacherJoke() {
   showLesson(
-    "Засадько усміхається:\n«Так, тоді хтось вирішив підключити ще чайник і зарядку одночасно.»",
+    "Викладач усміхається:\n«Так, тоді хтось вирішив підключити ще чайник і зарядку одночасно.»",
     [
       { label: "Сміятись", onSelect: () => askForTouch() },
       { label: "Промовчати", onSelect: () => askForTouch() },
@@ -91,7 +94,7 @@ function teacherJoke() {
 //
 function askForTouch() {
   showLesson(
-    "Засадько:\n«Ну що, хто хоче доторкнутись?»",
+    "Викладач:\n«Ну що, хто хоче доторкнутись?»",
     [
       { label: "Доторкнутись", onSelect: () => touchSphere() },
       { label: "Жартом сказати щось", onSelect: () => jokePath() },
@@ -105,6 +108,7 @@ function askForTouch() {
 //  ─── ГІЛКА 1: Доторкнутись ─────────────────────────────────────────
 //
 function touchSphere() {
+    triggerLightning();
   showLesson(
     "Ваш палець тягнеться до кулі. Блискавка легенько торкається шкіри.",
     [
@@ -118,7 +122,7 @@ function touchSphere() {
 
 function teacherExplainsBeauty() {
   showLesson(
-    "Засадько:\n«Бачите, наука — це просто красиво.»",
+    "Викладач:\n«Бачите, наука — це просто красиво.»",
     [
       { label: "Повернутись на місце", onSelect: () => endLesson() },
     ]
@@ -142,7 +146,7 @@ function jokePath() {
 
 function teacherJokesBack() {
   showLesson(
-    "Засадько (жартома):\n«Якщо ввірю у себе — то, може, й так.»",
+    "Викладач (жартома):\n«Якщо ввірю у себе — то, може, й так.»",
     [
       { label: "Доторкнутись тепер", onSelect: () => touchSphere() },
       { label: "Повернутись на місце", onSelect: () => endLesson() },
@@ -167,7 +171,7 @@ function seriousQuestions() {
 
 function teacherPhysics() {
   showLesson(
-    "Засадько:\n«Бо ти створюєш точку, де поле сильніше. Струм шукає найкоротший шлях.»",
+    "Викладач:\n«Бо ти створюєш точку, де поле сильніше. Струм шукає найкоротший шлях.»",
     [
       {
         label: "А виглядає як фокус!",
@@ -179,7 +183,7 @@ function teacherPhysics() {
 
 function teacherFinalPhysics() {
   showLesson(
-    "Засадько:\n«От тому фізика — це чарівність у поясненнях.»",
+    "Викладач:\n«От тому фізика — це чарівність у поясненнях.»",
     [
       { label: "Повернутись на місце", onSelect: () => endLesson() },
     ]
@@ -203,11 +207,14 @@ function refuseTouch() {
 
 function teacherRefuse() {
   showLesson(
-    "Засадько:\n«Ну як хочеш, головне — щоб не від страху.»",
+    "Викладач:\n«Ну як хочеш, головне — щоб не від страху.»",
     [
       {
         label: "Спостерігати, як пробує інший студент",
-        onSelect: () => endLesson(),
+        onSelect: () => {
+          triggerLightning();
+          endLesson();
+        },
       },
     ]
   );
@@ -218,7 +225,7 @@ function teacherRefuse() {
 //
 function endLesson() {
   showLesson(
-    "Ну от, експеримент пройшов успішно. Усі повертаються на місця.\n\nЗасадько:\n«Фізика — не страшна. Просто інколи блискавки ви бачите на власні очі.»",
+    "Ну от, експеримент пройшов успішно. Усі повертаються на місця.\n\nВикладач:\n«Фізика — не страшна. Просто інколи блискавки ви бачите на власні очі.»",
     [
       { label: "Вийти з кабінету", onSelect: () => exitClassroom() },
     ]
@@ -227,9 +234,11 @@ function endLesson() {
 
 function exitClassroom() {
   setTimeout(() => {
-    changeScene(3); // повернення до коридору
-    hero.x = 950;
+    changeScene(7); // повернення до коридору
+    hero.x = 500;
     hero.y = 485;
+    hero.targetX = 500;
+    hero.targetY = 485;
     isLesson2Done = true;
-  }, 250);
+  }, 0);
 }

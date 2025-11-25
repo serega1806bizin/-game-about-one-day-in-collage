@@ -131,7 +131,7 @@ function applySceneAssets(targetScene) {
       images.scene = images.scene10;
 
       setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
-      // setTimeout(() => startLesson2Scene(), 500);
+      setTimeout(() => startLesson2Scene(), 0);
       break;
 
     default:

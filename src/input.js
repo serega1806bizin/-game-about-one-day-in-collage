@@ -8,6 +8,7 @@ import { startNpcDialog } from "./npcDialog.js"; // <-- додаємо імпо�
 import { changeScene, getCurrentScene } from "./sceneManager.js";
 import { snapCameraToHero } from "./camera.js";
 import { isLesson1Done } from "./lesson1Story.js";
+import { isLesson2Done } from "./lesson2Story.js";
 
 const RED_ZONE = { r: 255, g: 0, b: 0 };
 const BLUE_ZONE = { r: 0, g: 0, b: 255 };
@@ -85,12 +86,15 @@ export function bindPointer(hero) {
 
       if (current === 7) {
         console.log("🟩 Сцена 7: перехід на сцену 10");
-        changeScene(10);
-        hero.x = 100;
-        hero.y = 900;
-        hero.targetX = hero.x;
-        hero.targetY = hero.y;
-        snapCameraToHero(hero);
+        if (!isLesson2Done) {
+          changeScene(10);
+          hero.y = 1200;
+          hero.targetX = hero.x;
+          hero.targetY = hero.y;
+          snapCameraToHero(hero);
+        } else {
+          showLessonEnd();
+        }
         return;
       }
 

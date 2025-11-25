@@ -13,7 +13,7 @@ const mathTasks = [
 
 // Суперскладна задача (фінальний бос)
 const hardTask = {
-  question: "Супер задача: (12 + 6) / 3 * 4 - 7 = ?",
+  question: "(12 + 6) / 3 * 4 - 7 = ?",
   answer: "13"
 };
 
@@ -240,8 +240,10 @@ function exitClassroom() {
   setTimeout(() => {
     changeScene(3);
 
-    hero.x = 950;
+    hero.x = 350;
     hero.y = 485;
+    hero.targetX = 350;
+    hero.targetY = 485;
 
   }, 250);
   isLesson1Done = true;

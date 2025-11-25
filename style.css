@@ -141,7 +141,7 @@ html, body {
 }
 
 .lesson-modal {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.5);
   padding: 25px 35px;
   border-radius: 18px;
   width: 380px;
@@ -159,8 +159,9 @@ html, body {
 .lesson-modal p {
   font-size: 20px;
   margin-bottom: 20px;
-  color: #222;
+  color: #ffffff;
   line-height: 1.4;
+  font-weight: bold;
 }
 
 /* Кнопки */
@@ -194,4 +195,14 @@ html, body {
 
 .hidden {
   display: none !important;
+}
+
+#lightningCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  pointer-events: none; /* щоб не заважав клікам по грі */
+  z-index: 2; /* вище game-канвасу, але нижче модалок, якщо в них більший z-index */
 }
