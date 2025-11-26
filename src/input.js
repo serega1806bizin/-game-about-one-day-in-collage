@@ -9,6 +9,7 @@ import { changeScene, getCurrentScene } from "./sceneManager.js";
 import { snapCameraToHero } from "./camera.js";
 import { isLesson1Done } from "./lesson1Story.js";
 import { isLesson2Done } from "./lesson2Story.js";
+import { isLesson3Done } from "./lesson3Story.js";
 
 const RED_ZONE = { r: 255, g: 0, b: 0 };
 const BLUE_ZONE = { r: 0, g: 0, b: 255 };
@@ -165,8 +166,13 @@ export function bindPointer(hero) {
       }
 
       if (current === 9) {
-        changeScene(11);
-        return;
+        if (!isLesson3Done) {
+          changeScene(11);
+          return;
+        } else {
+          showLessonEnd();
+          return;
+        }
       }
 
       changeScene(5);
