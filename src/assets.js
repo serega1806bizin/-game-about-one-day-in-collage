@@ -38,6 +38,7 @@ export const images = {
   scene9: loadImage("../scene9.png"),
   nav9:   loadImage("../navmask9.png"),
   scene10: loadImage("../scene10.png"),
+  scene11: loadImage("../scene11.png"),
 };
 
 // «текущая» карта, з которой працюють камера / рендер / навмаска
@@ -69,6 +70,7 @@ export async function loadAllAssets() {
     waitDecode(images.scene9),
     waitDecode(images.nav9),
     waitDecode(images.scene10),
+    waitDecode(images.scene11),
 
     ...carSprites.map((s) => waitDecode(s.img ? s.img : s)),
   ]);

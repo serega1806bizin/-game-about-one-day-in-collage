@@ -164,6 +164,11 @@ export function bindPointer(hero) {
         return;
       }
 
+      if (current === 9) {
+        changeScene(11);
+        return;
+      }
+
       changeScene(5);
       return;
     }

@@ -7,6 +7,7 @@ import { setHeroSpeed, setHeroScale, applyHeroSizeFromScreen } from "./hero.js";
 import { HERO_SPEED } from "./config.js";
 import { startLessonScene } from "./lesson1Story.js";
 import { startLesson2Scene } from "./lesson2Story.js";
+import { startLesson3Scene } from "./lesson3Story.js";
 
 let currentScene = 1;
 
@@ -132,6 +133,14 @@ function applySceneAssets(targetScene) {
 
       setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
       setTimeout(() => startLesson2Scene(), 0);
+      break;
+    
+    case 11:
+      images.scene = images.scene11;
+      images.nav = images.nav11;
+
+      setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
+      setTimeout(() => startLesson3Scene(), 0);
       break;
 
     default:

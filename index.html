@@ -75,12 +75,21 @@
     <div id="lessonPopup" class="lesson-overlay">
       <div class="lesson-modal">
         <p id="lessonText"></p>
-
-        <!-- поле вводу -->
         <input id="lessonInput" class="lesson-input hidden" type="text" />
-
-        <!-- кнопки -->
         <div class="lesson-buttons" id="lessonButtons"></div>
+      </div>
+    </div>
+
+    <div id="lesson-dialog" class="lesson-dialog lesson-dialog--no-input">
+      <div class="lesson-dialog__window">
+        <div id="lesson-text" class="lesson-dialog__text"></div>
+
+        <div class="lesson-input-wrapper">
+          <span class="lesson-terminal-prompt">js&gt;</span>
+          <input id="lesson-input" class="lesson-input" type="text" />
+        </div>
+
+        <div id="lesson-buttons" class="lesson-dialog__buttons"></div>
       </div>
     </div>
 

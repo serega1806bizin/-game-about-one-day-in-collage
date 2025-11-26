@@ -206,3 +206,145 @@ html, body {
   pointer-events: none; /* щоб не заважав клікам по грі */
   z-index: 2; /* вище game-канвасу, але нижче модалок, якщо в них більший z-index */
 }
+
+.lesson-input-wrapper {
+  margin-top: 12px;
+  padding: 6px 10px;
+  background: #111;
+  border-radius: 8px;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Fira Code", "Consolas", monospace;
+  color: #00ff7f; /* зелёный как в старых терминалах */
+}
+
+.lesson-terminal-prompt {
+  opacity: 0.9;
+}
+
+.lesson-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.lesson-input::placeholder {
+  color: #00ff7f;
+  opacity: 0.4;
+}
+
+/* чтобы при выключенном вводе (когда третий аргумент не true) можно было прятать */
+.lesson-dialog--no-input .lesson-input-wrapper {
+  display: none;
+}
+
+/* ===== НОВЫЙ ТЕРМІНАЛЬНИЙ ДІАЛОГ (ИНФОРМАТИКА) ===== */
+
+.lesson-dialog {
+  position: fixed;
+  inset: 0;                          /* растянуть на весь экран */
+  display: none;                     /* по умолчанию скрыт */
+  align-items: center;
+  justify-content: center;
+  z-index: 20;                       /* выше канваса и .overlay (там 10) */
+  background: rgba(0, 0, 0, 0.55);   /* затемнение фона */
+}
+
+.lesson-dialog.show {
+  display: flex;
+}
+
+.lesson-dialog__window {
+  max-width: 600px;
+  width: 90vw;
+  max-height: 80vh;
+  background: #080b10;
+  border-radius: 10px;
+  border: 1px solid #232737;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+  padding: 16px 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Fira Code", "Consolas", monospace;
+  color: #c8f7c5;
+}
+
+.lesson-dialog__text {
+  white-space: pre-wrap;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+/* кнопки в терминальном диалоге */
+.lesson-dialog__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.lesson-dialog__buttons button {
+  background: #111827;
+  border: 1px solid #374151;
+  color: #e5e7eb;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+
+.lesson-dialog__buttons button:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+}
+
+.lesson-dialog__buttons button:active {
+  transform: translateY(0);
+}
+
+/* терминальная строка уже почти есть, но лучше чуть сузить область действия */
+.lesson-dialog .lesson-input-wrapper {
+  margin-top: 12px;
+  padding: 6px 10px;
+  background: #111;
+  border-radius: 8px;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Fira Code", "Consolas", monospace;
+  color: #00ff7f;
+}
+
+.lesson-terminal-prompt {
+  opacity: 0.9;
+}
+
+.lesson-dialog .lesson-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.lesson-dialog .lesson-input::placeholder {
+  color: #00ff7f;
+  opacity: 0.4;
+}
+
+/* когда withInput = false */
+.lesson-dialog--no-input .lesson-input-wrapper {
+  display: none;
+}
