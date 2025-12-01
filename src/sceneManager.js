@@ -8,6 +8,7 @@ import { HERO_SPEED } from "./config.js";
 import { startLessonScene } from "./lesson1Story.js";
 import { startLesson2Scene } from "./lesson2Story.js";
 import { startLesson3Scene } from "./lesson3Story.js";
+import { introChoice } from "./scene5Dialog.js";
 
 let currentScene = 1;
 
@@ -71,12 +72,13 @@ function applySceneAssets(targetScene) {
       images.scene = images.scene5;
       images.nav = images.nav5;
 
+      introChoice();
       setHeroScale(hero, 1.5);
       console.log(" scale = 1.5");
 
       setHeroSpeed(hero, 220);
-      hero.x = 450;
-      hero.y = 650;
+      hero.x = 550;
+      hero.y = 900;
       break;
 
     case 6:
@@ -137,7 +139,6 @@ function applySceneAssets(targetScene) {
     
     case 11:
       images.scene = images.scene11;
-      images.nav = images.nav11;
 
       setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
       setTimeout(() => startLesson3Scene(), 0);

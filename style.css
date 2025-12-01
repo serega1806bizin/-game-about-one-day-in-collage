@@ -22,11 +22,10 @@ html, body {
 }
 .overlay.show { display: flex; }
 .modal {
-  background: #111; color: #fff; padding: 24px 28px; border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  color: #fff; padding: 0px; border-radius: 0;
 }
 .modal button {
-  margin-top: 12px; padding: 10px 16px; border: 0; border-radius: 10px; cursor: pointer;
+  margin-top: 0px; padding: 10px 16px; border: 0; border-radius: 10px; cursor: pointer;
 }
 
 
@@ -347,4 +346,159 @@ html, body {
 /* когда withInput = false */
 .lesson-dialog--no-input .lesson-input-wrapper {
   display: none;
+}
+
+#startScreen.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+#startScreen.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ====== MODAL WINDOW ====== */
+#startScreen .modal {
+  background: rgba(25, 25, 30, 0.9);
+  padding: 35px;
+  width: clamp(300px, 90%, 450px);
+  border-radius: 22px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.75);
+  text-align: center;
+
+  animation: popupFade 0.45s ease;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#startScreen h2 {
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#startScreen p {
+  color: #ddd;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+
+/* ====== BUTTONS ====== */
+#startScreen button {
+  width: 100%;
+  padding: 12px 18px;
+  margin-top: 10px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #4a6fff, #3454e3);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-weight: 600;
+}
+
+#startScreen button:hover {
+  background: linear-gradient(135deg, #5d7fff, #4667ff);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(52, 84, 227, 0.35);
+}
+
+#startScreen button:active {
+  transform: scale(0.98);
+}
+
+
+/* ====== INPUTS & SELECT ====== */
+#startScreen input,
+#startScreen select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #1b1b22;
+  border: 1px solid #444;
+  color: #fff;
+  outline: none;
+  transition: 0.25s;
+}
+
+#startScreen input:focus,
+#startScreen select:focus {
+  border-color: #5d7fff;
+  box-shadow: 0 0 12px rgba(93, 127, 255, 0.4);
+}
+
+/* Hidden blocks */
+.hidden {
+  display: none;
+}
+
+/* ====== LABEL ====== */
+#startScreen h3 {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Чтобы форма не обрезалась на маленькой высоте */
+#startScreen.overlay {
+  align-items: flex-start;   /* Прижимаем вверх, чтобы влезало */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  overflow-y: auto;          /* Включаем прокрутку */
+}
+
+/* Ограничиваем максимальную высоту модалки */
+#startScreen .modal {
+  max-height: 95vh;
+  overflow-y: auto;          /* Скролл внутри окна */
+}
+
+/* На маленькой высоте уменьшаем отступы */
+@media (max-height: 500px) {
+  #startScreen .modal {
+    padding: 20px;
+  }
+  
+  #startScreen h2 {
+    font-size: 22px;
+  }
+  
+  #startScreen p,
+  #startScreen h3 {
+    font-size: 14px;
+  }
+
+  #startScreen button {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  #startScreen input,
+  #startScreen select {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
 }

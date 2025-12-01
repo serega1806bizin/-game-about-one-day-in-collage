@@ -65,9 +65,9 @@
         <img
           id="scheduleImage"
           src="rozklad.png"
-          style="max-width: 90vw; max-height: 80vh"
+          style="max-width: 90vw; max-height: 80vh; height: 100vh"
         />
-        <div class="buttons" style="margin-top: 20px">
+        <div class="buttons" style="margin-top: 0px">
           <button id="closeScheduleBtn">Закрити</button>
         </div>
       </div>
@@ -92,6 +92,64 @@
         <div id="lesson-buttons" class="lesson-dialog__buttons"></div>
       </div>
     </div>
+    <div style="background: #000" id="startScreen" class="overlay show">
+      <div class="modal">
+        <h2>Привіт!</h2>
+        <p>
+          Зараз у тебе є можливість пройти один день з життя студента нашого
+          коледжу!<br />
+          Скажи, як тобі зручніше продовжити гру?
+        </p>
+
+        <div id="startButtons">
+          <button id="btnAbit">Я — майбутній студент</button>
+          <button id="btnStudent">Я — студент/гість</button>
+          <button id="btnSkip">Пропустити</button>
+        </div>
+
+        <div id="abitForm" class="hidden">
+          <h3>Трішки про тебе</h3>
+
+          <input id="abitName" type="text" placeholder="Як тебе звати?" />
+          <input
+            id="abitSchool"
+            type="text"
+            placeholder="З якої ти школи? (необов’язково)"
+          />
+
+          <select id="abitSpec">
+            <option value="">На яку спеціальність хочеш вступати?</option>
+            <option>Інженерія програмного забезпечення</option>
+            <option>Комп’ютерна інженерія</option>
+            <option>Електроніка</option>
+            <option>Транспортні технології</option>
+            <option>Автомобільний транспорт</option>
+            <option>Галузеве машинобудування</option>
+            <option>Секретарська та офісна справа</option>
+          </select>
+
+          <p>Хочеш отримати інформацію про вступ?</p>
+          <button id="btnYesInfo">Так</button>
+          <button id="btnNoInfo">Ні</button>
+
+          <div id="phoneBlock" class="hidden">
+            <input
+              id="abitPhone"
+              type="text"
+              placeholder="Введи номер телефону"
+            />
+            <button id="btnSubmitPhone">Підтвердити</button>
+          </div>
+
+          <div id="byeBlock" class="hidden">
+            <p>Добре! Бажаємо успіхів у грі ❤️</p>
+            <button id="btnStartGameFromBye">Почати гру</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./src/startSurvey.js"></script>
 
     <script type="module" src="./src/main.js"></script>
   </body>

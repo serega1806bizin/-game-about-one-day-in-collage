@@ -8,7 +8,8 @@ import { updateCars, resetCars } from "./cars.js";
 import { initNpc, updateNpc, applyNpcSizeFromScreen } from "./npc.js";
 import { initNpc2 } from "./npc.js";
 import { initNpc3 } from "./npc.js";
-
+import { initEva, initSerhii, initLera } from "./npc.js";
+import { lera, serhii } from "./npc.js";
 
 import {
   canvas,
@@ -50,6 +51,9 @@ export async function boot() {
   initNpc();
   initNpc2();
   initNpc3();
+  initEva();
+  initSerhii();
+  initLera();
 
   window.heroRef = hero;
 

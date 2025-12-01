@@ -14,7 +14,9 @@ import { renderNpc } from "./npc.js";
 import { getCurrentScene } from "./sceneManager.js";
 import { renderNpc2 } from "./npc.js";
 import { renderNpc3 } from "./npc.js";
-
+import { renderLera } from "./npc.js";
+import { renderEva } from "./npc.js";
+import { renderSerhii } from "./npc.js";
 
 export function render(hero) {
   ctx.clearRect(0, 0, viewW, viewH);
@@ -73,7 +75,11 @@ export function render(hero) {
     renderNpc2();
     renderNpc3();
   }
-  
+  if (getCurrentScene() === 5) {
+    renderLera();
+    renderEva();
+    renderSerhii();
+  }
 
   // DEBUG: маска прохідності
   if (DEBUG_SHOW_NAV && nav.canvas) {

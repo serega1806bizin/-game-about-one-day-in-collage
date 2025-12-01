@@ -1,9 +1,9 @@
 // npc.js
-import { images } from './assets.js';
-import { worldToScreen } from './camera.js';
-import { ctx, viewH } from './state.js';
-import { clamp } from './utils.js';
-import { NPC_VH, NPC_MIN_PX, NPC_MAX_PX } from './config.js';
+import { images } from "./assets.js";
+import { worldToScreen } from "./camera.js";
+import { ctx, viewH } from "./state.js";
+import { clamp } from "./utils.js";
+import { NPC_VH, NPC_MIN_PX, NPC_MAX_PX } from "./config.js";
 
 export const npc = {
   x: 680,
@@ -21,40 +21,51 @@ export const npc = {
 };
 
 export const npc2 = {
-  x: 1200,   // координати по сцені 2 (підбереш під себе)
+  x: 1200, // координати по сцені 2 (підбереш під себе)
   y: 490,
   w: 0,
   h: 0,
   img: null,
-  scale: 40 // при потребі підправиш
+  scale: 40, // при потребі підправиш
 };
 
+// === NPC3 (статичный) ===
+export const npc3 = {
+  x: 320, // СТАВИМ ПРЯМО НА ГЕРОЯ ДЛЯ ПРОВЕРКИ
+  y: 475,
+  w: 0,
+  h: 0,
+  img: null,
+  scale: 0.25,
+};
 
+export const lera = {
+  x: 750,
+  y: 900,
+  w: 0,
+  h: 0,
+  img: null,
+  scale: 0.25,
+};
 
+export const eva = {
+  x: 950,
+  y: 900,
+  w: 0,
+  h: 0,
+  img: null,
+  scale: 0.25,
+};
+
+export const serhii = {
+  x: 1050,
+  y: 900,
+  w: 0,
+  h: 0,
+  img: null,
+  scale: 0.25,
+};
 // 1) ініціалізація після завантаження картинок
-export function initNpc() {
-  const img = images.npc1;
-  if (!img || !img.naturalWidth) return;
-
-  npc.srcW = Math.floor(img.naturalWidth / npc.frameCount);
-  npc.srcH = img.naturalHeight;
-
-  applyNpcSizeFromScreen(); // одразу підлаштувати під поточний екран
-}
-
-export function initNpc2() {
-  const img = images.npc2;
-  if (!img || !img.complete) return;
-
-  npc2.img = img;
-
-  const scale = 0.3; // розмір підбери — це коефіцієнт
-  npc2.w = img.naturalWidth * scale;
-  npc2.h = img.naturalHeight * scale;
-}
-
-
-
 
 // 2) перерахунок адаптивного розміру (викликаємо на resize)
 export function applyNpcSizeFromScreen() {
@@ -83,9 +94,17 @@ export function renderNpc() {
   const sy = 0;
 
   // центр по X, низ по Y
-  ctx.drawImage(img, sx, sy, npc.srcW, npc.srcH,
-    Math.round(x - npc.w / 2), Math.round(y - npc.h),
-    npc.w, npc.h);
+  ctx.drawImage(
+    img,
+    sx,
+    sy,
+    npc.srcW,
+    npc.srcH,
+    Math.round(x - npc.w / 2),
+    Math.round(y - npc.h),
+    npc.w,
+    npc.h
+  );
 }
 
 export function renderNpc2() {
@@ -102,15 +121,67 @@ export function renderNpc2() {
   );
 }
 
-// === NPC3 (статичный) ===
-export const npc3 = {
-  x: 320,    // СТАВИМ ПРЯМО НА ГЕРОЯ ДЛЯ ПРОВЕРКИ
-  y: 475,
-  w: 0,
-  h: 0,
-  img: null,
-  scale: 0.25,
-};
+export function renderNpc3() {
+  if (!npc3.img) {
+    console.log("❌ NPC3 no IMG, cancel render");
+    return;
+  }
+
+  const { x, y } = worldToScreen(npc3.x, npc3.y);
+
+  ctx.drawImage(npc3.img, x - npc3.w / 2, y - npc3.h, npc3.w, npc3.h);
+}
+
+export function renderLera() {
+  if (!lera.img) {
+    console.log("❌ lera no IMG, cancel render");
+    return;
+  }
+
+  const { x, y } = worldToScreen(lera.x, lera.y);
+
+  ctx.drawImage(lera.img, x - lera.w / 2, y - lera.h, lera.w, lera.h);
+}
+
+export function renderEva() {
+  if (!eva.img) {
+    console.log("❌ eva no IMG, cancel render");
+    return;
+  }
+
+  const { x, y } = worldToScreen(eva.x, eva.y);
+
+  ctx.drawImage(eva.img, x - eva.w / 2, y - eva.h, eva.w, eva.h);
+}
+
+export function renderSerhii() {
+  if (!serhii.img) {
+    console.log("❌ serhii no IMG, cancel render");
+    return;
+  }
+
+  const { x, y } = worldToScreen(serhii.x, serhii.y);
+
+  ctx.drawImage(serhii.img, x - serhii.w / 2, y - serhii.h, serhii.w, serhii.h);
+}
+
+export function initNpc() {
+  const img = images.npc1;
+  if (!img || !img.naturalWidth) return;
+
+  npc.srcW = Math.floor(img.naturalWidth / npc.frameCount);
+  npc.srcH = img.naturalHeight;
+
+  applyNpcSizeFromScreen(); // одразу підлаштувати під поточний екран
+}
+
+export function initNpc2() {
+  const img = images.npc2;
+  if (!img || !img.complete) return;
+
+  npc2.img = img;
+  applyNpcSize(npc2);
+}
 
 export function initNpc3() {
   const img = images.npc3;
@@ -121,26 +192,55 @@ export function initNpc3() {
     return;
   }
 
-  npc3.img = img;
-  npc3.w = img.naturalWidth * npc3.scale;
-  npc3.h = img.naturalHeight * npc3.scale;
+  npc3.img = img; // ← потрібно записати в наш об'єкт
+
+  applyNpcSize(npc3);
 
   console.log("✅ NPC3 initialized", npc3.w, npc3.h);
 }
 
-export function renderNpc3() {
-  if (!npc3.img) {
-    console.log("❌ NPC3 no IMG, cancel render");
-    return;
+export function applyNpcSize(n) {
+  let targetH;
+
+  if (window.innerWidth > 900) {
+    // ПК
+    targetH = Math.round(viewH * 0.22); // було 0.4 — зменшили
+  } else {
+    // телефон
+    targetH = Math.round(viewH * 0.40);
   }
 
-  const { x, y } = worldToScreen(npc3.x, npc3.y);
+  // targetH = clamp(targetH, 60, 220);
+  // targetH = clamp(targetH, 80, 260); // min/max (як у героя)
 
-  ctx.drawImage(
-    npc3.img,
-    x - npc3.w / 2,
-    y - npc3.h,
-    npc3.w,
-    npc3.h
-  );
+  const aspect = n.img.naturalWidth / n.img.naturalHeight;
+  n.h = targetH;
+  n.w = Math.round(targetH * aspect);
+}
+
+export function initEva() {
+  const img = images.eva;
+  if (!img || !img.complete) return;
+
+  eva.img = img;
+
+  applyNpcSize(eva);
+}
+
+export function initSerhii() {
+  const img = images.serhii;
+  if (!img || !img.complete) return;
+
+  serhii.img = img;
+
+  applyNpcSize(serhii);
+}
+
+export function initLera() {
+  const img = images.lera;
+  if (!img || !img.complete) return;
+
+  lera.img = img;
+
+  applyNpcSize(lera);
 }

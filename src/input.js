@@ -3,13 +3,21 @@ import { canvas, worldH } from "./state.js";
 import { screenToWorld } from "./camera.js";
 import { clamp } from "./utils.js";
 import { projectTargetToWalkable, isColorZone } from "./navmask.js";
-import { showPopup, showQuestionPopup, showDoorIsClosed, showLessonEnd, showOcupied } from "./dialog.js";
+import {
+  showPopup,
+  showQuestionPopup,
+  showDoorIsClosed,
+  showLessonEnd,
+  showOcupied,
+} from "./dialog.js";
 import { startNpcDialog } from "./npcDialog.js"; // <-- додаємо імпорт
 import { changeScene, getCurrentScene } from "./sceneManager.js";
+import { lera, eva, serhii } from "./npc.js";
 import { snapCameraToHero } from "./camera.js";
 import { isLesson1Done } from "./lesson1Story.js";
 import { isLesson2Done } from "./lesson2Story.js";
 import { isLesson3Done } from "./lesson3Story.js";
+import { startScene5Dialog } from "./scene5Dialog.js";
 
 const RED_ZONE = { r: 255, g: 0, b: 0 };
 const BLUE_ZONE = { r: 0, g: 0, b: 255 };
@@ -19,6 +27,11 @@ const GREEN_ZONE2 = { r: 0, g: 255, b: 85 };
 const GREEN_ZONE3 = { r: 0, g: 255, b: 0 };
 const YELLOW_ZONE = { r: 255, g: 255, b: 0 };
 const ORANGE_ZONE = { r: 255, g: 170, b: 0 };
+function dist(a, n) {
+  const dx = a.x - n.x;
+  const dy = a.y - n.y;
+  return Math.hypot(dx, dy);
+}
 
 export function bindPointer(hero) {
   canvas.addEventListener("pointerdown", (e) => {
@@ -99,12 +112,10 @@ export function bindPointer(hero) {
         return;
       }
 
-
       return;
     }
 
     if (isColorZone(wx, wy, GREEN_ZONE2.r, GREEN_ZONE2.g, GREEN_ZONE2.b)) {
-    
       const current = getCurrentScene();
 
       if (current === 1) {
@@ -117,7 +128,6 @@ export function bindPointer(hero) {
         changeScene(9);
         return;
       }
-
     }
 
     // --- 3. Клік по червоній зоні
@@ -188,6 +198,23 @@ export function bindPointer(hero) {
         hero.y = 470;
         hero.targetX = hero.x;
         hero.targetY = hero.y;
+        return;
+      }
+    }
+    if (getCurrentScene() === 5) {
+      const click = { x: wx, y: wy };
+
+      // перевіряємо — герой натиснув приблизно по NPC
+      if (dist(click, lera) < 900) {
+        startScene5Dialog("lera");
+        return;
+      }
+      if (dist(click, eva) < 900) {
+        startScene5Dialog("eva");
+        return;
+      }
+      if (dist(click, serhii) < 900) {
+        startScene5Dialog("serhii");
         return;
       }
     }
