@@ -2,7 +2,8 @@
 import { showLessonInfo } from "./lessonDialog.js";
 import { changeScene } from "./sceneManager.js";
 import { hero } from "./state.js";
-
+import { isLesson1Done } from "./lesson1Story.js";
+import { isLesson2Done } from "./lesson2Story.js";
 //
 // ─── ФЛАГ УРОКУ 3 ─────────────────────────────────────────
 //
@@ -307,15 +308,24 @@ function ultraTaskExplain() {
 
 function endLesson3() {
   showLessonInfo(
-    "Пара добігає кінця.\n" +
-      "Монітори поступово вимикаються, на дошці ще залишається написаний код.\n\n" +
-      "Викладач:\n" +
-      "«На наступних уроках ми будемо з цих рядків збирати щось живе: міні-ігри, перевірки, логіку.\n" +
-      "Не забувайте, що сьогодні ви написали свою першу програму.»",
+    "Пара добігає кінця...",
     [
       {
         label: "Вийти з кабінету",
-        onSelect: () => exitClassroom()
+        onSelect: () => {
+          
+          // 🔥 ПЕРЕВІРКА ВСІХ УРОКІВ
+          if (isLesson1Done && isLesson2Done && !isLesson3Done) {
+            const box = document.getElementById("finalMsg");
+            box.classList.add("show");
+
+            setTimeout(() => {
+              box.classList.remove("show");
+            }, 5000);
+          }
+
+          exitClassroom();
+        }
       }
     ]
   );

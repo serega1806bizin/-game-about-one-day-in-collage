@@ -33,6 +33,18 @@ function dist(a, n) {
   return Math.hypot(dx, dy);
 }
 
+function showFinalMessage() {
+  const box = document.getElementById("finalMsg");
+  if (!box) return;
+
+  box.classList.add("show");
+
+  setTimeout(() => {
+    box.classList.remove("show");
+  }, 3000);
+}
+
+
 export function bindPointer(hero) {
   canvas.addEventListener("pointerdown", (e) => {
     const rect = canvas.getBoundingClientRect();

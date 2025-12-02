@@ -9,6 +9,12 @@ import { startLessonScene } from "./lesson1Story.js";
 import { startLesson2Scene } from "./lesson2Story.js";
 import { startLesson3Scene } from "./lesson3Story.js";
 import { introChoice } from "./scene5Dialog.js";
+import { triggerSuperConfetti  } from "./confettiCrazy.js";
+import { showGameCompleted } from "./finalMessage.js";
+
+import { isLesson1Done } from "./lesson1Story.js";
+import { isLesson2Done } from "./lesson2Story.js";
+import { isLesson3Done } from "./lesson3Story.js";
 
 let currentScene = 1;
 
@@ -36,6 +42,13 @@ function applySceneAssets(targetScene) {
       console.log(" scale = 2");
 
       setHeroSpeed(hero, 220);
+      if (isLesson1Done && isLesson2Done && isLesson3Done) {
+        // невелика затримка щоб камера встигла оновитись
+        setTimeout(() => {
+          triggerSuperConfetti(); // 🎊 конфетті
+          showGameCompleted(); // 🎉 текст привітання
+        }, 500);
+      }
 
       break;
 
@@ -136,7 +149,7 @@ function applySceneAssets(targetScene) {
       setWorldSize(images.scene.naturalWidth, images.scene.naturalHeight);
       setTimeout(() => startLesson2Scene(), 0);
       break;
-    
+
     case 11:
       images.scene = images.scene11;
 

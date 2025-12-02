@@ -92,7 +92,16 @@
         <div id="lesson-buttons" class="lesson-dialog__buttons"></div>
       </div>
     </div>
-    <div style="background: #000" id="startScreen" class="overlay show">
+    <div
+      style="
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+      id="startScreen"
+      class="overlay show"
+    >
       <div class="modal">
         <h2>Привіт!</h2>
         <p>
@@ -159,6 +168,32 @@
         </form>
       </div>
     </div>
+    <div id="finalMsg" class="overlay">
+      <div class="modal" style="text-align: center">
+        <h2 style="font-size: 38px; color: #fff">
+          ВІТАЄМО З ПРОХОДЖЕННЯМ ОСТАННЬОГО УРОКУ!<br />
+          ТЕПЕР СПУСТИСЯ НА 1 ПОВЕРХ, ТЕБЕ ЧЕКАЄ СЮРПРИЗ!
+        </h2>
+      </div>
+    </div>
+    <div id="gameWin" class="overlay">
+      <div class="modal" style="text-align: center">
+        <h2 style="font-size: 42px; color: #fff">
+          ВІТАЄМО! ТИ ПРОЙШОВ ГРУ! 🎉
+        </h2>
+        <h2 style="font-size: 42px; color: #fff">
+          “Дякуємо, що провів день з нами. Ти гідний стати нашим студентом”
+        </h2>
+        <h2 style="font-size: 42px; color: #fff">
+          Запрошуємо тебе на навчання
+        </h2>
+      </div>
+    </div>
+
+    <canvas
+      id="confetti"
+      style="position: fixed; inset: 0; pointer-events: none; z-index: 9999"
+    ></canvas>
 
     <script src="./src/startSurvey.js"></script>
 
