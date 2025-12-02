@@ -1,20 +1,23 @@
 export function loadImage(src) {
   // один «сеансовый» кеш-бастер, чтобы не лупашить сеть каждый раз можно вынести во внешний VERSION
   const img = new Image();
-  img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
+  img.src = src;
   return img;
 }
 
 export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-export const wrap  = (v, w)     => ((v % w) + w) % w;
+export const wrap = (v, w) => ((v % w) + w) % w;
 
 export async function waitDecode(img) {
   if (img.decode) {
-    try { await img.decode(); } catch {}
+    try {
+      await img.decode();
+    } catch {}
   } else {
-    await new Promise(res => {
+    await new Promise((res) => {
       if (img.complete && img.naturalWidth) return res();
-      img.onload = res; img.onerror = res;
+      img.onload = res;
+      img.onerror = res;
     });
   }
 }
