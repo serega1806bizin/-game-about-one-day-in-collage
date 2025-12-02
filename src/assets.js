@@ -2,48 +2,48 @@
 import { loadImage, waitDecode } from "./utils.js";
 
 export const carSprites = [
-  loadImage("Car.png"),
-  loadImage("Car2.png"),
+  loadImage("img/Car.png"),
+  loadImage("img/Car2.png"),
 ];
 
 // ВСЕ КАРТИНКИ СЦЕН И НАВМАСОК
 export const images = {
-  scene1: loadImage("scene1.png"),
-  nav1:   loadImage("navmask.png"),
+  scene1: loadImage("img/scene1.png"),
+  nav1:   loadImage("img/navmask.png"),
 
-  scene2: loadImage("scene2.png"),
-  nav2:   loadImage("navmask2.png"),
+  scene2: loadImage("img/scene2.png"),
+  nav2:   loadImage("img/navmask2.png"),
 
   // твои новые сцены
-  scene3: loadImage("scene3.png"),
-  nav3:   loadImage("navmask3.png"),
+  scene3: loadImage("img/scene3.png"),
+  nav3:   loadImage("img/navmask3.png"),
 
-  scene4: loadImage("scene4.png"),
-  nav4:   loadImage("navmask4.png"),
+  scene4: loadImage("img/scene4.png"),
+  nav4:   loadImage("img/navmask4.png"),
 
-  scene5: loadImage("scene5.png"),
-  nav5:   loadImage("navmask5.png"),
+  scene5: loadImage("img/scene5.png"),
+  nav5:   loadImage("img/navmask5.png"),
 
-  hero:   loadImage("hero.png"),
-  choose: loadImage("choose.png"),
+  hero:   loadImage("img/hero.png"),
+  choose: loadImage("img/choose.png"),
 
-  npc1:   loadImage("npc1.png"),
-  npc2: loadImage("npc2.png"),
-  npc3: loadImage("npc3.png"),
+  npc1:   loadImage("img/npc1.png"),
+  npc2: loadImage("img/npc2.png"),
+  npc3: loadImage("img/npc3.png"),
 
-  lera: loadImage("lera.png"),
-  eva: loadImage("eva.png"),
-  serhii: loadImage("serhii.png"),
-  scene6: loadImage("scene6.png"),
-  nav6:   loadImage("navmask6.png"),
-  nav7:   loadImage("navmask7.png"),
-  scene7: loadImage("scene7.png"),
-  scene8: loadImage("scene8.png"),
-  nav8:   loadImage("navmask8.png"),
-  scene9: loadImage("scene9.png"),
-  nav9:   loadImage("navmask9.png"),
-  scene10: loadImage("scene10.png"),
-  scene11: loadImage("scene11.png"),
+  lera: loadImage("img/lera.png"),
+  eva: loadImage("img/eva.png"),
+  serhii: loadImage("img/serhii.png"),
+  scene6: loadImage("img/scene6.png"),
+  nav6:   loadImage("img/navmask6.png"),
+  nav7:   loadImage("img/navmask7.png"),
+  scene7: loadImage("img/scene7.png"),
+  scene8: loadImage("img/scene8.png"),
+  nav8:   loadImage("img/navmask8.png"),
+  scene9: loadImage("img/scene9.png"),
+  nav9:   loadImage("img/navmask9.png"),
+  scene10: loadImage("img/scene10.png"),
+  scene11: loadImage("img/scene11.png"),
 };
 
 // «текущая» карта, з которой працюють камера / рендер / навмаска
