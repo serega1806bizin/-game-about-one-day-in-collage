@@ -19,77 +19,108 @@ const btnSubmitPhone = document.getElementById("btnSubmitPhone");
 const byeBlock = document.getElementById("byeBlock");
 const btnStartGameFromBye = document.getElementById("btnStartGameFromBye");
 
-// === GOOGLE SHEETS SETTINGS ===
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbyIjbcN4ryZSm4IR1EFkqilljTwgzZQcxHWDN1ElTgoofQsp3s306TP-J159wHBnz3g1A/exec";
+// === GOOGLE FORM URL ===
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScwKh4w8TQ2gKNci0YvOZ8zg3G19t0jhadFmF6q-Mzz8zgVHg/formResponse";
 
-// === HELPERS ===
+// === LOCAL STORAGE SAVE ===
 function saveToLocal(data) {
   localStorage.setItem("abitData", JSON.stringify(data));
 }
 
-function sendToGoogle(data) {
-  fetch(SHEET_URL, {
+// === SEND TO GOOGLE FORM (ALWAYS SEND ALL FIELDS) ===
+function sendToGoogleForm(isInfoWanted) {
+  const fd = new FormData();
+
+  // NAME
+  fd.append(
+    "entry.1527170952",
+    abitName.value.trim() !== "" ? abitName.value.trim() : "--"
+  );
+
+  // SCHOOL
+  fd.append(
+    "entry.542459924",
+    abitSchool.value.trim() !== "" ? abitSchool.value.trim() : "--"
+  );
+
+  // SPEC
+  fd.append(
+    "entry.1136122744",
+    abitSpec.value.trim() !== "" ? abitSpec.value.trim() : "--"
+  );
+
+  // PHONE (even if they don't want — send "--")
+  fd.append(
+    "entry.1139989332",
+    isInfoWanted
+      ? (abitPhone.value.trim() !== "" ? abitPhone.value.trim() : "--")
+      : "--"
+  );
+
+  // WANTS INFO
+  fd.append("entry.575420519", isInfoWanted ? "Так" : "Ні");
+
+  fetch(GOOGLE_FORM_URL, {
     method: "POST",
     mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  }).catch(err => console.log("Google Sheets error:", err));
+    body: fd
+  }).then(() => console.log("✔ Дані відправлено у Google Form"));
 }
 
+// === START GAME ===
 function startGame() {
   startScreen.classList.remove("show");
 }
 
-// === BUTTON LOGIC ===
+// === LOGIC ===
 
-// 1) Майбутній абітурієнт
+// 1. Майбутній абітурієнт
 btnAbit.addEventListener("click", () => {
   abitForm.classList.remove("hidden");
   document.getElementById("startButtons").classList.add("hidden");
 });
 
-// 2) Студент / гість
+// 2. Студент / гість
 btnStudent.addEventListener("click", startGame);
 
-// 3) Пропустити
+// 3. Пропустити
 btnSkip.addEventListener("click", startGame);
 
-// 4) Хочу інформацію — питаємо телефон
+// 4. Хочу інформацію → питаємо телефон
 btnYesInfo.addEventListener("click", () => {
   phoneBlock.classList.remove("hidden");
 });
 
-// 5) Не хочу інформацію — просто побажання
+// 5. НЕ хоче → бажаємо успіхів + отправка
 btnNoInfo.addEventListener("click", () => {
   byeBlock.classList.remove("hidden");
 
   const data = {
-    name: abitName.value || "",
-    school: abitSchool.value || "",
-    spec: abitSpec.value || "",
-    phone: "",
-    wantsInfo: false
+    name: abitName.value || "--",
+    school: abitSchool.value || "--",
+    spec: abitSpec.value || "--",
+    phone: "--",
+    wantsInfo: "Ні"
   };
 
   saveToLocal(data);
-  sendToGoogle(data);
+  sendToGoogleForm(false);
 });
 
-// 6) Подтверджує номер → старт гри
+// 6. Підтверджує номер → відправляємо та стартуємо гру
 btnSubmitPhone.addEventListener("click", () => {
   const data = {
-    name: abitName.value || "",
-    school: abitSchool.value || "",
-    spec: abitSpec.value || "",
-    phone: abitPhone.value || "",
-    wantsInfo: true
+    name: abitName.value || "--",
+    school: abitSchool.value || "--",
+    spec: abitSpec.value || "--",
+    phone: abitPhone.value || "--",
+    wantsInfo: "Так"
   };
 
   saveToLocal(data);
-  sendToGoogle(data);
-
-  startGame();
+  sendToGoogleForm(true);
 });
 
-// 7) Старт гри після “бажаємо успіхів”
+// 7. Старт після “Бажаємо успіхів”
 btnStartGameFromBye.addEventListener("click", startGame);

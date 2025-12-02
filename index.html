@@ -107,17 +107,24 @@
           <button id="btnSkip">Пропустити</button>
         </div>
 
-        <div id="abitForm" class="hidden">
+        <form id="abitForm" class="hidden">
           <h3>Трішки про тебе</h3>
 
-          <input id="abitName" type="text" placeholder="Як тебе звати?" />
+          <input
+            id="abitName"
+            name="entry.1527170952"
+            type="text"
+            placeholder="Як тебе звати?"
+          />
+
           <input
             id="abitSchool"
+            name="entry.542459924"
             type="text"
             placeholder="З якої ти школи? (необов’язково)"
           />
 
-          <select id="abitSpec">
+          <select id="abitSpec" name="entry.1136122744">
             <option value="">На яку спеціальність хочеш вступати?</option>
             <option>Інженерія програмного забезпечення</option>
             <option>Комп’ютерна інженерія</option>
@@ -128,24 +135,28 @@
             <option>Секретарська та офісна справа</option>
           </select>
 
+          <!-- Ховаємо (буде: Так / Ні) -->
+          <input id="wantsInfo" name="entry.575420519" type="hidden" value="" />
+
           <p>Хочеш отримати інформацію про вступ?</p>
-          <button id="btnYesInfo">Так</button>
-          <button id="btnNoInfo">Ні</button>
+          <button type="button" id="btnYesInfo">Так</button>
+          <button type="button" id="btnNoInfo">Ні</button>
 
           <div id="phoneBlock" class="hidden">
             <input
               id="abitPhone"
+              name="entry.1139989332"
               type="text"
               placeholder="Введи номер телефону"
             />
-            <button id="btnSubmitPhone">Підтвердити</button>
+            <button type="button" id="btnSubmitPhone">Підтвердити</button>
           </div>
 
           <div id="byeBlock" class="hidden">
             <p>Добре! Бажаємо успіхів у грі ❤️</p>
-            <button id="btnStartGameFromBye">Почати гру</button>
+            <button type="button" id="btnStartGameFromBye">Почати гру</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
 
